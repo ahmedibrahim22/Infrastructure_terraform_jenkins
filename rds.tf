@@ -14,5 +14,5 @@ resource "aws_db_instance" "default" {
 
 resource "aws_db_subnet_group" "my_db_rds" {
   name = "rds-main"
-  subnet_ids = [ module.iti.private1_id ]
+  subnet_ids = [ module.iti.private1_id,  module.iti.private2_id]
 }
