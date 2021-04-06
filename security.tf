@@ -55,7 +55,7 @@ resource "aws_security_group" "second" {
 }
 
 resource "aws_security_group" "rds" {
-  name = "rds_sg"
+  name = "rds"
   vpc_id      = module.iti.vpc_id
 
     ingress {
@@ -76,7 +76,7 @@ resource "aws_security_group" "rds" {
 }
 
 resource "aws_security_group" "redis" {
-  name = "rds_sg"
+  name = "redis"
   vpc_id      = module.iti.vpc_id
 
     ingress {
