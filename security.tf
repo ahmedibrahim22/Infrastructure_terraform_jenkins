@@ -42,15 +42,6 @@ resource "aws_security_group" "second" {
     cidr_blocks = [module.iti.vpc_cider_block]
   }
 
-
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 6379
-    to_port     = 6379
-    protocol    = "tcp"
-    cidr_blocks = [module.iti.vpc_cider_block]
-  }
-
   egress {
     from_port   = 0
     to_port     = 0
@@ -63,7 +54,7 @@ resource "aws_security_group" "second" {
   }
 }
 
-resource "aws_db_security_group" "rds" {
+resource "aws_security_group" "rds" {
   name = "rds_sg"
   vpc_id      = module.iti.vpc_id
 
@@ -84,7 +75,7 @@ resource "aws_db_security_group" "rds" {
 
 }
 
-resource "aws_db_security_group" "redis" {
+resource "aws_security_group" "redis" {
   name = "rds_sg"
   vpc_id      = module.iti.vpc_id
 
