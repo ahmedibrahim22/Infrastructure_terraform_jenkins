@@ -8,6 +8,7 @@ resource "aws_db_instance" "default" {
   username             = "admin"
   password             = "admin123"
   port                 = "3306"
+  skip_final_snapshot  = true
   vpc_security_group_ids = [aws_security_group.rds.id]
   db_subnet_group_name = aws_db_subnet_group.my_db_rds.name 
 }
