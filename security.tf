@@ -42,13 +42,6 @@ resource "aws_security_group" "second" {
     cidr_blocks = [var.cidr]
   }
 
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tcp"
-    cidr_blocks = [var.cidr]
-  }
 
   ingress {
     description = "TLS from VPC"
@@ -72,8 +65,42 @@ resource "aws_security_group" "second" {
 
 resource "aws_db_security_group" "rds" {
   name = "rds_sg"
+  vpc_id      = module.iti.vpc_id
 
-  ingress {
-    cidr = "10.0.0.0/16"
+    ingress {
+    description = "TLS from VPC"
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = [var.cidr]
   }
+  
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+}
+
+resource "aws_db_security_group" "redis" {
+  name = "rds_sg"
+  vpc_id      = module.iti.vpc_id
+
+    ingress {
+    description = "TLS from VPC"
+    from_port   = 6379
+    to_port     = 6379
+    protocol    = "tcp"
+    cidr_blocks = [var.cidr]
+  }
+  
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
 }
