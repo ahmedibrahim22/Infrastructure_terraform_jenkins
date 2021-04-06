@@ -31,7 +31,7 @@ resource "aws_security_group" "second" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [var.cidr]
+    cidr_blocks = [module.iti.vpc_cider_block]
   }
 
     ingress {
@@ -39,7 +39,7 @@ resource "aws_security_group" "second" {
     from_port   = 3000
     to_port     = 3000
     protocol    = "tcp"
-    cidr_blocks = [var.cidr]
+    cidr_blocks = [module.iti.vpc_cider_block]
   }
 
 
@@ -48,7 +48,7 @@ resource "aws_security_group" "second" {
     from_port   = 6379
     to_port     = 6379
     protocol    = "tcp"
-    cidr_blocks = [var.cidr]
+    cidr_blocks = [module.iti.vpc_cider_block]
   }
 
   egress {
@@ -72,7 +72,7 @@ resource "aws_db_security_group" "rds" {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = [var.cidr]
+    cidr_blocks = [module.iti.vpc_cider_block]
   }
   
   egress {
@@ -93,7 +93,7 @@ resource "aws_db_security_group" "redis" {
     from_port   = 6379
     to_port     = 6379
     protocol    = "tcp"
-    cidr_blocks = [var.cidr]
+    cidr_blocks = [module.iti.vpc_cider_block]
   }
   
   egress {
